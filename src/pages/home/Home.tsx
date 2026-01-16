@@ -1,6 +1,7 @@
 import React from 'react';
-
+import { useNavigate, Link } from 'react-router-dom';
 function Home() { 
+    let navigate = useNavigate();
     return (
         <>
             <div className="bg-indigo-900 flex justify-center">
@@ -19,6 +20,7 @@ function Home() {
                                 Nova Postagem
                             </div>
                         </div>
+  
                     </div>
                 </div>
 
