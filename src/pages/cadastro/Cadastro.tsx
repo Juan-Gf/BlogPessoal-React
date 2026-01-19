@@ -1,7 +1,7 @@
 import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { ClipLoader }  from "react-spinners";
-import type  { Usuario } from "../../models/Usuario";
+import type Usuario from "../../models/Usuario";
 import { cadastrarUsuario } from "../../services/Service";
 
 
@@ -13,7 +13,7 @@ function Cadastro() {
 
     const [confirmarSenha, setConfirmarSenha] = useState<string>("")
 
-    const [usuario, setUsuario] = useState<string>({
+    const [usuario, setUsuario] = useState<Usuario>({
         id: 0,
         nome: "",
         usuario: "",
@@ -22,13 +22,14 @@ function Cadastro() {
     })
 
     useEffect(() => {
+
         if (usuario.id !== 0) {
             retornar()
         }
     }, [usuario])
 
     function retornar(){
-        navigate('/login')
+        navigate('/')
     }
 
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>){

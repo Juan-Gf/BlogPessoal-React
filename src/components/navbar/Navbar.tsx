@@ -7,10 +7,10 @@ function Navbar() {
 
     const navigate = useNavigate();
 
-    const { handleLogoout } = useContext(AuthContext);
+    const { handleLogout } = useContext(AuthContext);
 
     function logout() {
-        handleLogoout();
+        handleLogout();
         alert("Usuário foi desconectado com sucesso.");
         navigate("/");
     }
@@ -23,10 +23,10 @@ function Navbar() {
                     <Link to="/home" className="text-2xl font-bold">Blog Pessoal</Link>
 
                     <div className="flex gap-4">
-                        Postagens
-                        Temas
-                        Cadastrar tema
-                        Perfil
+                        <div className="hover:underline">Postagens</div>
+                        <Link to="/temas" className="hover:underline">Temas</Link>
+                        <Link to="/cadastrartema" className="hover:underline">Cadastrar tema</Link>
+                        <div className="hover:underline">Perfil</div>
                         <Link to='' onClick={logout} className="hover:underline">Sair</Link>
                     </div>
                 </div>

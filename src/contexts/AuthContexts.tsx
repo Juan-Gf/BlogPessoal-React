@@ -4,7 +4,7 @@ import { login } from "../services/Service";
 
 interface AuthContextProps {
     usuario: UsuarioLogin
-    handleLogoout(): void
+    handleLogout(): void
     handleLogin(usuario: UsuarioLogin): Promise<void>
     isLoading: boolean
 }   
@@ -39,7 +39,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
         setIsLoading(false)
     }
 
-    function handleLogoout() {
+        console.log(usuario)
+    
+
+    function handleLogout() {
         setUsuario({
             id: 0,
             nome: "",
@@ -51,7 +54,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
 
     return (
-        <AuthContext.Provider value={{ usuario, handleLogoout, handleLogin, isLoading }}>
+        <AuthContext.Provider value={{ usuario, handleLogout, handleLogin, isLoading }}>
             {children}
         </AuthContext.Provider>
     )

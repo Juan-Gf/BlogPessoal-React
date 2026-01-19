@@ -48,7 +48,7 @@ function Login() {
                             name="usuario"
                             placeholder="Usuário"
                             className="border-2 border-slate-700 rounded p-2"
-                            value={usuario.usuario}
+                            value={usuarioLogin.usuario}
                             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                         />
                     </div>
@@ -60,7 +60,7 @@ function Login() {
                             name="senha"
                             placeholder="Senha"
                             className="border-2 border-slate-700 rounded p-2"
-                            value={usuario.senha}
+                            value={usuarioLogin.senha}
                             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)} 
                         />
                     </div>
