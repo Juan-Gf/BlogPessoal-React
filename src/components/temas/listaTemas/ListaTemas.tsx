@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
-import CardTemas from "../cardTemas/CardTemas";
+import { useContext, useEffect, useState } from "react";
+import CardTema from "../cardTemas/CardTema";
 import type Tema from "../../../models/Tema";
 import { useNavigate } from "react-router-dom";
-import { AuthContext, AuthProvider } from "../../../contexts/AuthContexts";
+import { AuthContext } from "../../../contexts/AuthContexts";
 import { buscar } from "../../../services/Service";
 import { SyncLoader } from "react-spinners";
 
@@ -10,20 +10,20 @@ import { SyncLoader } from "react-spinners";
 function ListaTemas(){
 
 
-    const navigate = useNavigate()
+    const navigate = useNavigate() //Cria a variavel para fazer uso do hook "useNavigate" resposavel pela navegação das paginas
 
-    const [isLoading, setIsLoading] = useState<boolean>(false) 
-
+    const [isLoading, setIsLoading] = useState<boolean>(false)  // 
+    
     const [temas, setTemas] = useState<Tema[]>([])
 
 
     const { usuario, handleLogout } = useContext(AuthContext)
     const token = usuario.token
 
-     useEffect(() => {
+    useEffect(() => {
         if(token === ''){
-            alert("Voce precisa estar logado")
-            navigate('/login')
+            alert("Voce precisa estar logado!")
+            navigate('/')
         }
     }, [token])
 
@@ -37,7 +37,7 @@ function ListaTemas(){
             setIsLoading(true)
 
             await buscar('/temas', setTemas, {
-                headers: {Authorization: token}
+                headers: { Authorization: token}
             })
         } catch (error: any){
             if(error.toString().includes('401')){
@@ -70,7 +70,7 @@ function ListaTemas(){
 
                         {  
                             temas.map((tema) => ( 
-                                <CardTemas key={tema.id} tema={tema}/>
+                                <CardTema key={tema.id} tema={tema}/>
                             ))
                         }
                     </div>

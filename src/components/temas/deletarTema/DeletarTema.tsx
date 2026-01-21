@@ -1,72 +1,74 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import type Tema from "../../../models/Tema";
 import { AuthContext } from "../../../contexts/AuthContexts";
 import { buscar, deletar } from "../../../services/Service";
 import { ClipLoader } from "react-spinners";
 
-const navigate = useNavigate()
-
-const [tema, setTema] = useState<Tema>({} as Tema)
-
-const [isLoading, setIsLoading] = useState<boolean>(false)
-
-const { usuario, handleLogout } = useContext(AuthContext)
-const token = usuario.token
-
-const {id} =  useParams<{id: string}>()
-
-async function buscarPorId(id: string) {
-    try{
-        await buscar(`/temas${id}`, setTema, {
-            headers: {Authorization: token}
-        })
-    }catch (error: any){
-        if (error.toString().includes('401')){
-            handleLogout()
-        }
-    }
-}
-
-useEffect(() => {
-    if (token === ''){
-        alert("Voce precisa estar logado!")
-        navigate('/login')
-    }
-}, [token])
-
-useEffect(() => {
-    if (id !== undefined){
-        buscarPorId(id)
-    }
-}, [id])
-
-async function deletarTema(){
-    setIsLoading(true)
-
-    try{
-        await deletar(`/temas/${id}`, {
-            headers: {Authorization: token}
-        })
-        alert("Tema deletado com sucesso!")
-    } catch (error: any){
-        if (error.toString().includes('401')){
-            handleLogout()
-        }else {
-            alert("Erro ao deletar o tema!")
-        }
-    }
-
-    setIsLoading(false)
-    retornar()  
-
-}     
-
-function retornar() {
-    navigate("/temas")
-}
-
 function DeletarTema() {
+    const navigate = useNavigate()
+
+    const [tema, setTema] = useState<Tema>({} as Tema)
+
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+
+    const { usuario, handleLogout } = useContext(AuthContext)
+    const token = usuario.token
+
+    const {id} =  useParams<{id: string}>()
+
+    async function buscarPorId(id: string) {
+        try{
+            await buscar(`/temas/${id}`, setTema, {
+                headers: { 'Authorization': token}
+            })
+        }catch (error: any){
+            if (error.toString().includes('401')){
+                handleLogout()
+            }
+        }
+    }
+
+    useEffect(() => {
+        if (token === ''){
+            alert("Voce precisa estar logado!")
+            navigate('/login')
+        }
+    }, [token])
+
+    useEffect(() => {
+        if (id !== undefined){
+            buscarPorId(id)
+        }
+    }, [id])
+
+    async function deletarTema(){
+        setIsLoading(true)
+
+        try{
+            await deletar(`/temas/${id}`, {
+                headers: {
+                    'Authorization': token}
+            })
+            alert("Tema deletado com sucesso!")
+        } catch (error: any){
+            if (error.toString().includes('401')){
+                handleLogout()
+            }else {
+                alert("Erro ao deletar o tema!")
+            }
+        }
+
+        setIsLoading(false)
+        retornar()  
+
+    }     
+
+    function retornar() {
+        navigate("/temas")
+    }
+
+
     return(
         <div className="container w-1/3 mx-auto">
             <h1 className="text-4x1 text-center my-4">Deletar Tema</h1>

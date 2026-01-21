@@ -1,13 +1,14 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Footer from "./components/footer/Footer";
 import Navbar from "./components/navbar/Navbar";
-import Home from "./pages/home/Home";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Cadastro from "./pages/cadastro/Cadastro";
-import Login from "./pages/login/Login";
-import { AuthProvider } from "./contexts/AuthContexts";
-import ListaTemas from "./components/temas/listaTemas/ListaTemas";
-import FormTema from "./components/temas/formTema/FormTema";
 import DeletarTema from "./components/temas/deletarTema/DeletarTema";
+import FormTema from "./components/temas/formTema/FormTema";
+import ListaTemas from "./components/temas/listaTemas/ListaTemas";
+import { AuthProvider } from "./contexts/AuthContexts";
+import Cadastro from "./pages/cadastro/Cadastro";
+import Home from "./pages/home/Home";
+import Login from "./pages/login/Login";
+
 
 
 function App() {
