@@ -1,7 +1,8 @@
-import React from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import ListaPostagens from '../../components/postagem/listaPostagens/ListaPostagens';
+import ModalPostagem from '../../components/postagem/modalPostagem/ModalPostagem';
+
 function Home() { 
-    let navigate = useNavigate();
+
     return (
         <>
             <div className="bg-indigo-900 flex justify-center">
@@ -15,23 +16,25 @@ function Home() {
                         </p>
                         
                         <div  className='flex justify-around gap-4'>
-                            <div className='rounded text-white
-                                            border-white border-solid border-2 py-2 px-4'>
-                                Nova Postagem
-                            </div>
+                            
+                            <ModalPostagem />
+
                         </div>
   
                     </div>
-                </div>
 
-                <div>
-                    <img   
-                        src='https://i.imgur.com/fyfri1v.png'
-                        alt='Imagem Pagina Home'
-                        className='w-2/3'    
-                    />
+                    <div className='flex justify-center'>
+                        <img   
+                            src='https://i.imgur.com/fyfri1v.png'
+                            alt='Imagem Pagina Home'
+                            className='w-2/3'    
+                        />
+                    </div>
                 </div>
             </div>
+
+            <ListaPostagens />
+
         </>
     );
 }
