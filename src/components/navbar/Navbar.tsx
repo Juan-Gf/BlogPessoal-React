@@ -11,8 +11,8 @@ function Navbar() {
     const { usuario, handleLogout } = useContext(AuthContext);
 
     function logout() {
+        ToastAlerta('O Usuário foi desconectado com sucesso!', "info")
         handleLogout();
-        ToastAlerta('O Usuário foi desconectado com sucesso!', 'info')
         navigate("/");
     }
 
